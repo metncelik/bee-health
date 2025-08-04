@@ -71,10 +71,10 @@ def create_model(model_type='cnn', num_classes=6, pretrained=True):
     if model_type.lower() == 'cnn':
         return BeeHealthCNN(num_classes=num_classes)
     
-    elif model_type.lower() == 'resnet50':
-        model = models.resnet50(pretrained=pretrained)
-        model.fc = nn.Linear(model.fc.in_features, num_classes)
-        return model
+    # elif model_type.lower() == 'resnet50':
+    #     model = models.resnet50(pretrained=pretrained)
+    #     model.fc = nn.Linear(model.fc.in_features, num_classes)
+    #     return model
     
     elif model_type.lower() == 'vgg16':
         model = models.vgg16(pretrained=pretrained)
