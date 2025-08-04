@@ -1,10 +1,16 @@
-from fastapi import FastAPI
+from dotenv import load_dotenv
+load_dotenv()
+
+import sqlite3
 import uvicorn
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import sqlite3
 from fastapi import HTTPException
-from routes.predict import router as predict_router
+from routes.predictions import router as predictions_router
+from routes.chat import router as chat_router
+from routes.images import router as images_router
+from routes.speech import router as speech_router
 
 app = FastAPI(
     title="Bee Health API",
@@ -48,7 +54,10 @@ async def general_exception_handler(request, exc):
         content={"error": "Internal Server Error", "detail": "An unexpected error occurred"}
     )
 
-app.include_router(predict_router)
+app.include_router(predictions_router)
+app.include_router(chat_router)
+app.include_router(images_router)
+app.include_router(speech_router)
 
 @app.get("/")
 async def root():

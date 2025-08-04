@@ -3,3 +3,4 @@
 checkpoints/
 database/.sqlite/
 database/images/
+storage/
